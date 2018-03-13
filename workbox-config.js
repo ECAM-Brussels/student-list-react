@@ -16,6 +16,10 @@ module.exports = {
         {
             "urlPattern": new RegExp('https://fonts.googleapis.com'),
             "handler": "staleWhileRevalidate"
+        },
+        {
+            "urlPattern": new RegExp('https://fonts.gstatic.com'),
+            "handler": "staleWhileRevalidate"
         }
       ]
 };
