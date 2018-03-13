@@ -1,0 +1,23 @@
+.student {
+    padding: 1em 2em;
+    border-bottom: 1px solid gainsboro;
+    position: relative;
+    text-align: center;
+}
+
+.student:last-child {
+    border-bottom: none;
+}
+
+.student .matricule {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 0.6em;
+    color: darkgray;
+}
+
+.student .division {
+    font-size: 0.8em;
+    color: darkgray;
+}
