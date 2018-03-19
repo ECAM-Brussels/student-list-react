@@ -1,18 +1,27 @@
 import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
 import './App.css'
-import Student from './Student'
+import List from './List'
+import StudentDetail from './StudentDetail'
 
 class App extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {students: []}
+    this.state = {students: {}}
   }
 
   componentDidMount() {
     fetch("http://calendar.ecam.be/list/e")
       .then(response => response.json())
-      .then(json => this.setState({students: json}))
+      .then(json => this.setState({students: this.transformJSON(json)}))
+  }
+
+  transformJSON(json) {
+    return json.reduce((dico, elem) => {
+      dico[elem.matetu] = {name: elem.npetu, division: elem.annetu}
+      return dico
+    }, {})
   }
 
   render() {
@@ -22,7 +31,12 @@ class App extends Component {
           <h1>Student List</h1>
         </header>
         <main>
-          {this.state.students.map(student => <Student name={student.npetu} matricule={student.matetu} division={student.annetu}/>)}
+          <Route path="/student/:matricule" render={({match}) => {
+            if(match.params.matricule in this.state.students)
+              return <StudentDetail name={this.state.students[match.params.matricule].name} matricule={match.params.matricule} division={this.state.students[match.params.matricule].division}/>
+            else return <div></div>
+          }} />
+          <Route exact path="/" render={() => <List students={this.state.students} />} />
         </main>
       </div>
     );

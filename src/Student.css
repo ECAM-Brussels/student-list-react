@@ -3,9 +3,14 @@
     border-bottom: 1px solid gainsboro;
     position: relative;
     text-align: center;
+    color: black;
 }
 
-.student:last-child {
+a {
+    text-decoration: none;
+}
+
+a:last-child .student {
     border-bottom: none;
 }
 
