@@ -1,0 +1,7 @@
+.student-detail {
+    padding: 1em 2em;
+}
+
+.student-detail .label {
+    font-weight: bold;
+}
