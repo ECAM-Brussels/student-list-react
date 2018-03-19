@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
-import './Student.css';
+import './StudentDetail.css';
 
 class StudentDetail extends Component {
   render() {
+    console.log(this.props.student)
+    if(this.props.student === undefined) 
+      return <div className="student"></div>
     return (
-      <div className="student">
-        <div className="name">{this.props.name} <span className="division">{this.props.division}</span></div>
-        <div className="matricule">{this.props.matricule}</div>
+      <div className="student-detail">
+        <p className="label">Nom:</p>
+        <p className="name">{this.props.student.name}</p>
+        <p className="label">Matricule:</p>
+        <p className="matricule">{this.props.student.matricule}</p>
+        <p className="label">Année:</p>
+        <p className="division">{this.props.student.division}</p>
       </div>
     );
   }

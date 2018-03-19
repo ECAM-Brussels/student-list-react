@@ -19,7 +19,7 @@ class App extends Component {
 
   transformJSON(json) {
     return json.reduce((dico, elem) => {
-      dico[elem.matetu] = {name: elem.npetu, division: elem.annetu}
+      dico[elem.matetu] = {name: elem.npetu, division: elem.annetu, matricule: elem.matetu}
       return dico
     }, {})
   }
@@ -31,11 +31,7 @@ class App extends Component {
           <h1>Student List</h1>
         </header>
         <main>
-          <Route path="/student/:matricule" render={({match}) => {
-            if(match.params.matricule in this.state.students)
-              return <StudentDetail name={this.state.students[match.params.matricule].name} matricule={match.params.matricule} division={this.state.students[match.params.matricule].division}/>
-            else return <div></div>
-          }} />
+          <Route path="/student/:matricule" render={(props) => <StudentDetail student={this.state.students[props.match.params.matricule]} />} />
           <Route exact path="/" render={() => <List students={this.state.students} />} />
         </main>
       </div>
